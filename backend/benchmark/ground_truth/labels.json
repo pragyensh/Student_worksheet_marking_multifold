@@ -1,0 +1,15 @@
+[
+  {
+    "image": "template_image.jpg",
+    "regions": [
+      {"region_id": "q1", "expected_extraction": "B"},
+      {"region_id": "q2", "expected_extraction": "A"},
+      {"region_id": "q3", "expected_extraction": "B"},
+      {"region_id": "q4", "expected_extraction": "A"},
+      {"region_id": "q5", "expected_extraction": "C"},
+      {"region_id": "q6", "expected_extraction": "A"},
+      {"region_id": "q7", "expected_extraction": "MISSING_MODEL"},
+      {"region_id": "q8", "expected_extraction": "MISSING_MODEL"}
+    ]
+  }
+]

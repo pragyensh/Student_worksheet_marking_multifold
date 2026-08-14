@@ -1,0 +1,13 @@
+{
+  "worksheet_id": "week_07",
+  "regions": {
+    "q1": {"type": "mcq", "bbox": [100, 245, 420, 295], "options": 3, "layout": "horizontal"},
+    "q2": {"type": "mcq", "bbox": [500, 195, 550, 275], "options": 2, "layout": "vertical"},
+    "q3": {"type": "mcq", "bbox": [100, 440, 430, 495], "options": 3, "layout": "horizontal"},
+    "q4": {"type": "mcq", "bbox": [500, 440, 750, 495], "options": 2, "layout": "horizontal"},
+    "q5": {"type": "mcq", "bbox": [100, 600, 430, 655], "options": 3, "layout": "horizontal"},
+    "q6": {"type": "mcq", "bbox": [500, 600, 820, 655], "options": 3, "layout": "horizontal"},
+    "q7": {"type": "numeral", "bbox": [275, 765, 335, 815]},
+    "q8": {"type": "symbol", "bbox": [650, 765, 710, 815]}
+  }
+}

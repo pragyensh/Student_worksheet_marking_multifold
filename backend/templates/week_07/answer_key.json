@@ -1,0 +1,13 @@
+{
+  "worksheet_id": "week_07",
+  "regions": [
+    {"region_id": "q1", "type": "mcq", "correct_value": "B", "acceptable_variants": []},
+    {"region_id": "q2", "type": "mcq", "correct_value": "A", "acceptable_variants": []},
+    {"region_id": "q3", "type": "mcq", "correct_value": "B", "acceptable_variants": []},
+    {"region_id": "q4", "type": "mcq", "correct_value": "A", "acceptable_variants": []},
+    {"region_id": "q5", "type": "mcq", "correct_value": "C", "acceptable_variants": []},
+    {"region_id": "q6", "type": "mcq", "correct_value": "A", "acceptable_variants": []},
+    {"region_id": "q7", "type": "numeral", "correct_value": "60", "acceptable_variants": []},
+    {"region_id": "q8", "type": "symbol", "correct_value": "<", "acceptable_variants": []}
+  ]
+}
