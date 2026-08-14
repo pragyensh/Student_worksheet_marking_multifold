@@ -1,150 +1,215 @@
-Student Worksheet Automated Marking System
+<div align="center">
 
-An image-processing and automated evaluation pipeline for Grade 2–3 government-school mathematics worksheets. Teachers photograph completed worksheets on mobile phones; the system extracts exactly what a student wrote, ticked, or drew, and scores it against a per-worksheet answer key.
+# 📝 Student Worksheet Automated Marking System
 
-Built for MultifoldAI.
+### *An extraction-first, bias-resistant pipeline for grading handwritten Grade 2–3 worksheets*
 
-Core Principle
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-Frontend-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Vision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
 
-Extraction and scoring are treated as two separate problems, solved by two separate stages:
+[![Status](https://img.shields.io/badge/Status-Active_Development-yellow?style=flat-square)]()
+[![License](https://img.shields.io/badge/License-Proprietary-lightgrey?style=flat-square)]()
+[![MultifoldAI](https://img.shields.io/badge/Built_for-MultifoldAI-blueviolet?style=flat-square)](https://www.multifold.ai)
 
-Student marks B → Visual Extraction → "B" → Response Locked → Compare with Answer Key → Correct / Incorrect
+</div>
 
-Observe → Lock → Score. The pipeline first determines what the student actually marked or wrote, using visual evidence only. Once a response is locked, it is never revised based on what the "correct" answer should be. This avoids a known failure mode in vision-language models — over-correction — where a model silently replaces a student's wrong answer with the mathematically expected one before ever reporting it. No extraction step has access to the answer key; scoring is a separate, deterministic, rule-based comparison with no model involved.
+---
 
-Overall Workflow
-Student Worksheet Image (Upload/Input)
-        │
-        ▼
-Page Detection ─────────────── detect worksheet boundary
-        │
-        ▼
-Perspective Correction ──────── convert to top-down view
-        │
-        ▼
-Template Alignment ──────────── align with reference sheet
-        │
-        ▼
-Region-wise Cropping ────────── Q1 → Q8 answer areas
-        │
-        ▼
-Question-specific Extraction ── MCQ / Numeral / Symbol / OCR
-        │
-        ▼
-Response Locking ────────────── extract what student marked
-        │
-        ▼
-Deterministic Scoring ───────── compare with answer key
-        │
-        ▼
-Results & Score ─────────────── question-wise + confidence
-Tech Stack
-Layer	Technology	Purpose
-Frontend	React 19	Worksheet upload and results interface
-Frontend tooling	Vite	Development/build environment
-Backend	Python 3.10 + FastAPI	API and pipeline orchestration
-Server	Uvicorn	Running the FastAPI application
-Computer vision	OpenCV	Page detection, thresholding, feature extraction
-Numerical processing	NumPy	Image-array and numerical operations
-Image processing	OpenCV / Pillow	Image loading and preprocessing
-Data validation	Pydantic	API/data validation
-Configuration	JSON	Region definitions and answer keys
-Template matching	ORB + BFMatcher	Feature-based template alignment
-Testing	pytest	Backend testing
-VLM/OCR (planned)	Gemini Flash	Fallback extraction for ambiguous visual responses
-Question-wise Pipeline (week_07 template)
-Questions	Type	Extraction method
-Q1–Q6	MCQ	OpenCV-based checkbox/mark detection
-Q7	Handwritten numeral	Dedicated handwritten numeral recognition model
-Q8	Comparison symbol	Dedicated <, >, = recognition model
-MCQ Detection Approach
+## 🎯 Core Principle
 
-Classical computer vision, not a general-purpose ML model:
+> **Extraction and scoring are two separate problems.** The system always asks *"what did the student actually write?"* before it ever asks *"was it correct?"*
 
-Grayscale conversion
-Adaptive thresholding
-Segmentation according to the expected option layout
-Dark-pixel / fill-ratio analysis
-Identification of selected option(s)
-Handling of BLANK, MULTIPLE, STRAY_MARK, and AMBIGUOUS cases
+```
+✍️  Student marks B  →  👁️  Visual Extraction  →  🔒  "B" Locked  →  📊  Compare vs Answer Key  →  ✅/❌
+```
 
-This keeps the MCQ pipeline interpretable and fully deterministic — no vision model in the loop.
+**Observe → Lock → Score.** Once a response is locked, it is *never* revised based on what the "correct" answer should be.
 
-Handwriting / VLM Approach
-Cropped Answer Area → Image Preprocessing → Handwriting/VLM Recognition → Locked Response → Deterministic Score
+> [!IMPORTANT]
+> This design exists to prevent **over-correction** — a documented failure mode where vision-language models silently replace a student's wrong answer with the mathematically expected one. No extraction step ever sees the answer key. Scoring is a separate, fully deterministic, rule-based comparison — zero ML involved.
 
-Interfaces exist for handwritten-numeral, comparison-symbol, Devanagari, and fallback-VLM extraction. Model inference/API integration for some of these is still in progress. Any VLM fallback call is scoped to a single cropped region only and never receives the answer key.
+---
 
-Template-based Architecture
+## 🔄 Pipeline Overview
 
-Each worksheet is represented as a self-contained template configuration, so new worksheets can be added without restructuring the pipeline:
+```mermaid
+flowchart TD
+    A[📷 Worksheet Image Upload] --> B[🔍 Page Detection]
+    B --> C[📐 Perspective Correction]
+    C --> D[🧩 Template Alignment]
+    D --> E[✂️ Region-wise Cropping — Q1→Q8]
+    E --> F[🧠 Question-specific Extraction]
+    F --> G[🔒 Response Locking]
+    G --> H[⚖️ Deterministic Scoring]
+    H --> I[📊 Results & Confidence]
 
+    style A fill:#e0f2fe,stroke:#0284c7
+    style G fill:#fef9c3,stroke:#ca8a04
+    style H fill:#dcfce7,stroke:#16a34a
+    style I fill:#f3e8ff,stroke:#9333ea
+```
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology | Purpose |
+|:---:|:---:|---|
+| 🎨 Frontend | `React 19` | Worksheet upload & results interface |
+| ⚡ Tooling | `Vite` | Dev/build environment |
+| ⚙️ Backend | `Python 3.10` + `FastAPI` | API & pipeline orchestration |
+| 🚀 Server | `Uvicorn` | Serving the FastAPI app |
+| 👁️ Vision | `OpenCV` | Page detection, thresholding, feature extraction |
+| 🔢 Numerical | `NumPy` | Image-array operations |
+| 🖼️ Imaging | `OpenCV` / `Pillow` | Image loading & preprocessing |
+| ✅ Validation | `Pydantic` | API/data validation |
+| 📄 Config | `JSON` | Region definitions & answer keys |
+| 🧭 Matching | `ORB` + `BFMatcher` | Feature-based template alignment |
+| 🧪 Testing | `pytest` | Backend test suite |
+| 🤖 VLM (planned) | `Gemini Flash` | Fallback extraction, region-only, no answer key |
+
+</div>
+
+---
+
+## 📋 Question-wise Extraction Strategy *(week_07 template)*
+
+| Questions | Type | Method |
+|:---:|---|---|
+| `Q1–Q6` | 🔲 MCQ | OpenCV checkbox/mark detection |
+| `Q7` | ✏️ Handwritten numeral | Dedicated digit-recognition model |
+| `Q8` | 🔣 Comparison symbol | Dedicated `<` `>` `=` classifier |
+
+### 🔲 MCQ Detection — Classical CV, No ML
+
+```
+Grayscale → Adaptive Threshold → Option Segmentation → Fill-Ratio Analysis → Selection
+```
+
+Handles `BLANK` · `MULTIPLE` · `STRAY_MARK` · `AMBIGUOUS` — fully interpretable, fully deterministic.
+
+### ✏️ Handwriting / VLM Path
+
+```
+Cropped Region → Preprocessing → Handwriting/VLM Recognition → 🔒 Locked → ⚖️ Scored
+```
+
+Any VLM fallback call is **region-only** — it never receives the answer key.
+
+---
+
+## 🗂️ Template Architecture
+
+```
 backend/templates/week_07/
-├── template_image.jpg   # reference layout for alignment
-├── regions.json          # location + type of each answer region
-└── answer_key.json       # expected answer per region
-Repository Structure
-/backend
-  /pipeline
-    preprocessing/   # page detection, perspective correction, alignment
-    extraction/       # one module per response type (MCQ, numeral, symbol, OCR, drawings)
-    scoring/           # deterministic comparison logic — no ML
-  /templates          # per-worksheet template_image.jpg, regions.json, answer_key.json
-  /api                 # FastAPI app exposing endpoints to the frontend
-  /benchmark            # benchmark harness + accuracy/latency/cost metrics
-  /tests
-  requirements.txt
+├── 🖼️  template_image.jpg   → reference layout for alignment
+├── 📍 regions.json          → location + type of each answer region
+└── 🔑 answer_key.json       → expected answer per region
+```
 
-/frontend
-  # React 19 + Vite — worksheet upload and results interface
-  # talks to the backend only via the API layer; performs no extraction/scoring itself
+New worksheets plug in as new template folders — zero pipeline restructuring.
 
-Frontend and backend are kept fully separate — no shared source files or config.
+---
 
-Current Status
+## 📁 Repository Structure
 
-Implemented / Operational
+```
+📦 Student_worksheet_marking_multifold
+├── 🔧 backend/
+│   ├── pipeline/
+│   │   ├── preprocessing/   # page detection, perspective correction, alignment
+│   │   ├── extraction/      # one module per response type
+│   │   └── scoring/         # deterministic comparison — no ML
+│   ├── templates/            # per-worksheet configs
+│   ├── api/                  # FastAPI app
+│   ├── benchmark/             # accuracy/latency/cost harness
+│   ├── tests/
+│   └── requirements.txt
+│
+└── 🎨 frontend/
+    # React 19 + Vite — talks to backend via API only
+```
 
-React/Vite frontend
-FastAPI backend
-Worksheet upload API
-Page detection
-Perspective correction
-Template-based region configuration
-Initial MCQ extraction pipeline
-Deterministic scoring architecture
-Question-wise result generation
-Confidence representation
+> Frontend and backend are kept **fully separate** — no shared source files, no shared config.
 
-Under Development / Validation
+---
 
-Robust template alignment
-Improved handwritten checkbox detection
-Handwritten numeral recognition
-Comparison-symbol recognition
-Devanagari handwriting/OCR
-Gemini/VLM fallback integration
-Ambiguity handling
-Accuracy benchmarking and validation
-Getting Started
-bash
-# Backend
+## 📊 Current Status
+
+<table>
+<tr>
+<td valign="top" width="50%">
+
+### ✅ Implemented
+- React/Vite frontend
+- FastAPI backend
+- Worksheet upload API
+- Page detection
+- Perspective correction
+- Template-based region config
+- Initial MCQ extraction
+- Deterministic scoring
+- Question-wise results
+- Confidence representation
+
+</td>
+<td valign="top" width="50%">
+
+### 🚧 In Progress
+- Robust template alignment
+- Handwritten checkbox detection
+- Handwritten numeral recognition
+- Comparison-symbol recognition
+- Devanagari handwriting/OCR
+- Gemini/VLM fallback integration
+- Ambiguity handling
+- Accuracy benchmarking
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# ── Backend ──────────────────────────
 cd backend
 pip install -r requirements.txt
 uvicorn api.main:app --reload
 
-# Frontend
+# ── Frontend ─────────────────────────
 cd frontend
 npm install
 npm run dev
-Metrics Tracked (Benchmark Harness)
-Extraction accuracy
-False-correction rate — a wrong student answer silently changed to the correct one (primary metric)
-Blank-vs-faint-handwriting accuracy
-Ambiguity handling
-MCQ accuracy (including MULTIPLE / BLANK)
-Latency per stage
-Cost per worksheet (for any paid API path)
-License
+```
 
-Proprietary — MultifoldAI internal project.
+---
+
+## 📈 Benchmark Metrics
+
+| Metric | Why it matters |
+|---|---|
+| Extraction accuracy | Overall faithfulness of readings |
+| 🚨 **False-correction rate** | Primary metric — a wrong answer silently "fixed" to the correct one |
+| Blank-vs-faint accuracy | Distinguishing no answer from faint handwriting |
+| Ambiguity handling | Uncertain cases correctly flagged, not guessed |
+| MCQ accuracy | Including `MULTIPLE` / `BLANK` states |
+| Latency | Per stage, per worksheet |
+| Cost | Per worksheet at production volume |
+
+---
+
+<div align="center">
+
+**License:** Proprietary — MultifoldAI internal project
+
+*Built with 🧠 by the MultifoldAI engineering team*
+
+</div>
