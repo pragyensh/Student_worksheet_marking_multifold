@@ -2,13 +2,13 @@
 name = "student-worksheet-marking-backend"
 version = "0.1.0"
 description = "FastAPI backend for the worksheet marking workbench"
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi[standard]>=0.128.1",
-    "numpy==1.26.4",
-    "opencv-python-headless==4.8.0.76",
-    "pydantic==2.5.2",
-    "pillow==10.1.0",
+    "numpy>=1.26.4,<3",
+    "opencv-python-headless>=4.10.0.84,<5",
+    "pydantic>=2.5.2,<3",
+    "pillow>=10.1.0,<13",
     "python-multipart==0.0.6",
     "requests==2.31.0",
 ]
