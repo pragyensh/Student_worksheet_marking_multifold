@@ -6,14 +6,15 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 
 from backend.pipeline.orchestrator import PipelineOrchestrator
+from backend.pipeline.workbench import list_templates, run_workbench_pipeline
 
 app = FastAPI(title="Worksheet Extraction API")
 
 # Add CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -24,9 +25,32 @@ orchestrators = {
 }
 
 @app.get("/health")
+@app.get("/api/health")
 def health_check():
     return {"status": "healthy"}
 
+
+@app.get("/workbench/templates")
+@app.get("/api/workbench/templates")
+def workbench_templates():
+    return {"templates": list_templates()}
+
+
+@app.post("/workbench/run")
+@app.post("/api/workbench/run")
+async def run_workbench_step(
+    file: UploadFile = File(...),
+    step_index: int = Form(10),
+):
+    contents = await file.read()
+    if not contents:
+        raise HTTPException(status_code=400, detail="Uploaded worksheet image is empty.")
+    try:
+        return run_workbench_pipeline(contents, file.filename or "worksheet-image", step_index)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Workbench processing error: {str(e)}")
+
+@app.post("/process-worksheet")
 @app.post("/api/process-worksheet")
 async def process_worksheet(
     file: UploadFile = File(...),

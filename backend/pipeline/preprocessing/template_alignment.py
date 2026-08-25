@@ -64,8 +64,8 @@ class TemplateAligner:
         points_ref = np.zeros((len(good_matches), 2), dtype=np.float32)
         
         for i, match in enumerate(good_matches):
-            points_input[i, :] = keypoints[match.queryIdx].pt
-            points_ref[i, :] = self.keypoints_ref[match.trainIdx].pt
+            points_ref[i, :] = self.kp_template[match.queryIdx].pt
+            points_input[i, :] = kp_image[match.trainIdx].pt
             
         # Find homography
         h, mask = cv2.findHomography(points_input, points_ref, cv2.RANSAC, 5.0)
