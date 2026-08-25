@@ -5,8 +5,12 @@ import numpy as np
 from pydantic import BaseModel
 from typing import List, Dict, Any
 
-from backend.pipeline.orchestrator import PipelineOrchestrator
-from backend.pipeline.workbench import list_templates, run_workbench_pipeline
+try:
+    from backend.pipeline.orchestrator import PipelineOrchestrator
+    from backend.pipeline.workbench import list_templates, run_workbench_pipeline
+except ModuleNotFoundError:
+    from pipeline.orchestrator import PipelineOrchestrator
+    from pipeline.workbench import list_templates, run_workbench_pipeline
 
 app = FastAPI(title="Worksheet Extraction API")
 
@@ -19,10 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load orchestrators (in a real app, lazily load or cache these)
-orchestrators = {
-    "week_07": PipelineOrchestrator("week_07")
-}
+# Legacy orchestrators are loaded only when that old endpoint is used.
+orchestrators = {}
 
 @app.get("/health")
 @app.get("/api/health")

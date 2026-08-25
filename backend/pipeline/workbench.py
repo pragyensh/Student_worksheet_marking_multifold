@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 
 
-TEMPLATE_ROOT = os.path.join("backend", "templates")
+TEMPLATE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates"))
 
 
 def _region(region_id: str, kind: str, box: List[float], key: str = "", options: Optional[List[List[float]]] = None,
