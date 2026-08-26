@@ -100,7 +100,7 @@ TEMPLATES: List[Dict[str, Any]] = [
             _region("q1", "mcq", [0.10, 0.15, 0.47, 0.30], "A", options=[[0.13, 0.19, 0.18, 0.23], [0.32, 0.19, 0.37, 0.23], [0.13, 0.25, 0.18, 0.29]]),
             _region("q2", "mcq", [0.49, 0.15, 0.87, 0.30], "B", options=[[0.50, 0.25, 0.55, 0.29], [0.63, 0.25, 0.68, 0.29], [0.76, 0.25, 0.81, 0.29]]),
             _region("q3", "mcq", [0.10, 0.31, 0.47, 0.47], "A", options=[[0.13, 0.43, 0.18, 0.47], [0.26, 0.43, 0.31, 0.47], [0.38, 0.43, 0.43, 0.47]]),
-            _region("q4", "mcq", [0.49, 0.31, 0.87, 0.47], "A", options=[[0.50, 0.43, 0.55, 0.47], [0.63, 0.43, 0.68, 0.47], [0.76, 0.43, 0.81, 0.47]]),
+            _region("q4", "mcq", [0.49, 0.31, 0.87, 0.47], "B", options=[[0.50, 0.43, 0.55, 0.47], [0.63, 0.43, 0.68, 0.47], [0.76, 0.43, 0.81, 0.47]]),
             _region("q5", "mcq", [0.10, 0.49, 0.47, 0.68], "A", options=[[0.13, 0.64, 0.18, 0.68], [0.26, 0.64, 0.31, 0.68], [0.38, 0.64, 0.43, 0.68]]),
             _region("q6", "mcq", [0.49, 0.49, 0.87, 0.68], "C", options=[[0.50, 0.64, 0.55, 0.68], [0.63, 0.64, 0.68, 0.68], [0.76, 0.64, 0.81, 0.68]]),
             _region("q7", "numeral", [0.36, 0.76, 0.45, 0.84], "32"),
@@ -412,7 +412,7 @@ def _edge_similarity_score(image: np.ndarray, template: np.ndarray) -> float:
 
 
 def _orb_match_score(image: np.ndarray, template: np.ndarray) -> float:
-    orb = cv2.ORB_create(nfeatures=900)
+    orb = cv2.ORB_create(nfeatures=1200)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray_template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
     kp_template, desc_template = orb.detectAndCompute(gray_template, None)
@@ -423,7 +423,16 @@ def _orb_match_score(image: np.ndarray, template: np.ndarray) -> float:
     if not matches:
         return 0.0
     good = [match for match in matches if match.distance <= 68]
-    return float(min(len(good) / 80.0, 1.0))
+    if len(good) < 8:
+        return float(min(len(good) / 80.0, 1.0))
+
+    points_template = np.float32([kp_template[match.queryIdx].pt for match in good]).reshape(-1, 1, 2)
+    points_image = np.float32([kp_image[match.trainIdx].pt for match in good]).reshape(-1, 1, 2)
+    _, inlier_mask = cv2.findHomography(points_template, points_image, cv2.RANSAC, 5.0)
+    inliers = int(inlier_mask.sum()) if inlier_mask is not None else 0
+    inlier_ratio = inliers / max(1, len(good))
+    inlier_volume = min(inliers / 320.0, 1.0)
+    return float((inlier_volume * 0.8) + (inlier_ratio * 0.2))
 
 
 def _validate_image(image: np.ndarray) -> Dict[str, Any]:
@@ -496,7 +505,8 @@ def _extract_mcq(region: Dict[str, Any], normalized_image: np.ndarray, template_
         mark = _mark_metrics(option_crop, template_option)
         scores.append({"option": labels[index], **mark})
 
-    selected = [item["option"] for item in scores if item["marked"]]
+    red_selected = [item["option"] for item in scores if item["red_pixels"] >= 25]
+    selected = red_selected or [item["option"] for item in scores if item["marked"]]
     if len(selected) == 1:
         response = selected[0]
         confidence = "high"
@@ -507,14 +517,16 @@ def _extract_mcq(region: Dict[str, Any], normalized_image: np.ndarray, template_
         response = "BLANK"
         confidence = "high"
 
-    return response, confidence, {"option_scores": scores}
+    return response, confidence, {"selection_mode": "red_ink" if red_selected else "diff_fallback", "option_scores": scores}
 
 
 def _extract_open_region(crop: np.ndarray, template_crop: np.ndarray, region_type: str) -> Tuple[str, str, Dict[str, Any]]:
     metrics = _mark_metrics(crop, template_crop)
-    if not metrics["marked"]:
+    red_ink_present = metrics["red_pixels"] >= 25
+    dark_ink_fallback = metrics["marked"] and metrics["mark_ratio"] >= 0.22 and region_type != "drawing"
+    if not red_ink_present and not dark_ink_fallback:
         confidence = "medium" if region_type == "drawing" else "high"
-        return "BLANK", confidence, metrics
+        return "BLANK", confidence, {**metrics, "selection_mode": "red_ink_or_strong_diff"}
     return "MARK_PRESENT", "medium", {**metrics, "note": "Visible ink exists, but no handwriting/drawing model is wired in this POC."}
 
 
