@@ -190,6 +190,31 @@ npm install
 npm run dev
 ```
 
+### Optional Handwriting Recognition
+
+MCQ extraction stays local with OpenCV. For handwritten numerals, symbols, marks, matching, and drawing regions, the backend can call a region-only Gemini recognizer after local CV first detects student ink.
+
+Set these environment variables before starting the backend:
+
+```bash
+HANDWRITING_RECOGNIZER=gemini
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-3.5-flash-lite
+```
+
+If these are not set, handwritten/open regions remain review-safe as `AMBIGUOUS` instead of being guessed.
+
+### Variation Dataset
+
+Generate 15 variations for each of the 4 worksheet templates:
+
+```bash
+python tools/generate_template_variations.py
+python tools/run_template_variation_suite.py
+```
+
+Outputs are written under `template_variation_tests/`, including contact sheets, manifests, per-template results, and a combined summary.
+
 ---
 
 ## 📈 Benchmark Metrics

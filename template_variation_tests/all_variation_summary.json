@@ -1,0 +1,32 @@
+{
+  "total_variations": 60,
+  "completed": 45,
+  "warnings": 3,
+  "failed": 12,
+  "by_template": {
+    "ws_g3_subjective_w06": {
+      "total": 15,
+      "completed": 10,
+      "warnings": 2,
+      "failed": 3
+    },
+    "ws_g3_hybrid_w06": {
+      "total": 15,
+      "completed": 12,
+      "warnings": 0,
+      "failed": 3
+    },
+    "ws_g2_subjective_w06": {
+      "total": 15,
+      "completed": 11,
+      "warnings": 1,
+      "failed": 3
+    },
+    "ws_g2_hybrid_w06": {
+      "total": 15,
+      "completed": 12,
+      "warnings": 0,
+      "failed": 3
+    }
+  }
+}

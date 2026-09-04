@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.vite/
 .pnpm-store/
 frontend/node_modules/
 frontend/dist/

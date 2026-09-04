@@ -1,0 +1,56 @@
+[
+  {
+    "file": "step_01_worksheet_image_empty_upload_obstacle.jpg",
+    "kind": "actual failing upload payload",
+    "expected_stop": "API preflight before Step 1",
+    "why": "Upload body is empty, so FastAPI endpoint returns HTTP 400 before OpenCV decode."
+  },
+  {
+    "file": "step_01_worksheet_image_decode_obstacle.jpg",
+    "kind": "actual failing upload payload",
+    "expected_stop": "Step 1 - Worksheet image",
+    "why": "File is non-empty but not image bytes, so cv2.imdecode returns None."
+  },
+  {
+    "file": "step_02_template_resolution_no_templates_obstacle.png",
+    "kind": "visual explanation image",
+    "expected_stop": "Step 2 - Template resolution",
+    "why": "Requires server/config state: all templates missing/unreadable."
+  },
+  {
+    "file": "step_03_image_validation_too_small_obstacle.png",
+    "kind": "actual failing worksheet image",
+    "expected_stop": "Step 3 - Image validation",
+    "why": "Smallest side is below 450 pixels."
+  },
+  {
+    "file": "step_03_image_validation_blurry_obstacle.png",
+    "kind": "actual failing worksheet image",
+    "expected_stop": "Step 3 - Image validation",
+    "why": "Laplacian sharpness/blur score is below 45."
+  },
+  {
+    "file": "step_03_image_validation_too_dark_obstacle.png",
+    "kind": "actual failing worksheet image",
+    "expected_stop": "Step 3 - Image validation",
+    "why": "Average brightness is below 45."
+  },
+  {
+    "file": "step_03_image_validation_too_bright_obstacle.png",
+    "kind": "actual failing worksheet image",
+    "expected_stop": "Step 3 - Image validation",
+    "why": "Average brightness is above 235."
+  },
+  {
+    "file": "step_08_structured_output_validation_invalid_schema_obstacle.png",
+    "kind": "visual explanation image",
+    "expected_stop": "Step 8 - Structured-output validation",
+    "why": "Requires extraction/config/code mismatch, such as missing region IDs."
+  },
+  {
+    "file": "step_any_unexpected_code_error_obstacle.png",
+    "kind": "visual explanation image",
+    "expected_stop": "Any step",
+    "why": "Requires runtime exception in one pipeline component."
+  }
+]

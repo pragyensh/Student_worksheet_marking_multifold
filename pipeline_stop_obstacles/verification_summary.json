@@ -1,0 +1,84 @@
+[
+  {
+    "file": "step_01_worksheet_image_empty_upload_obstacle.jpg",
+    "stopped_or_flagged_at": "API preflight before Step 1",
+    "status": "api_400",
+    "errors": [
+      "Uploaded worksheet image is empty."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_01_worksheet_image_decode_obstacle.jpg",
+    "stopped_or_flagged_at": "1. Worksheet image",
+    "status": "failed",
+    "errors": [
+      "Invalid or unsupported image file."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_03_image_validation_too_small_obstacle.png",
+    "stopped_or_flagged_at": "3. Image validation and normalisation gate",
+    "status": "failed",
+    "errors": [
+      "Image resolution is too small for reliable region crops."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_03_image_validation_blurry_obstacle.png",
+    "stopped_or_flagged_at": "3. Image validation and normalisation gate",
+    "status": "failed",
+    "errors": [
+      "Image looks blurry. Upload a clearer worksheet photo."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_03_image_validation_too_dark_obstacle.png",
+    "stopped_or_flagged_at": "3. Image validation and normalisation gate",
+    "status": "failed",
+    "errors": [
+      "Image looks blurry. Upload a clearer worksheet photo.",
+      "Image brightness is outside the safe range."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_03_image_validation_too_bright_obstacle.png",
+    "stopped_or_flagged_at": "3. Image validation and normalisation gate",
+    "status": "failed",
+    "errors": [
+      "Image brightness is outside the safe range."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_02_template_resolution_no_templates_obstacle.png",
+    "stopped_or_flagged_at": "2. Template resolution",
+    "status": "failed",
+    "errors": [
+      "No template images are available."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_08_structured_output_validation_invalid_schema_obstacle.png",
+    "stopped_or_flagged_at": "8. Structured-output validation",
+    "status": "failed",
+    "errors": [
+      "Region order or count does not match the template contract."
+    ],
+    "summary": {}
+  },
+  {
+    "file": "step_any_unexpected_code_error_obstacle.png",
+    "stopped_or_flagged_at": "6. Response extraction",
+    "status": "failed",
+    "errors": [
+      "Simulated unexpected extractor crash."
+    ],
+    "summary": {}
+  }
+]

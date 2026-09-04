@@ -1,0 +1,362 @@
+[
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\01_ws_g3_subjective_w06_blank_original.png",
+    "file": "01_ws_g3_subjective_w06_blank_original.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Blank original template."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\02_ws_g3_subjective_w06_fully_filled_correct.png",
+    "file": "02_ws_g3_subjective_w06_fully_filled_correct.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "All configured regions filled with correct synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\03_ws_g3_subjective_w06_fully_filled_incorrect.png",
+    "file": "03_ws_g3_subjective_w06_fully_filled_incorrect.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "All configured regions filled with intentionally wrong synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\04_ws_g3_subjective_w06_half_filled_correct.png",
+    "file": "04_ws_g3_subjective_w06_half_filled_correct.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "First half of regions filled correctly; remaining regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\05_ws_g3_subjective_w06_alternate_filled_correct.png",
+    "file": "05_ws_g3_subjective_w06_alternate_filled_correct.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Alternating regions filled correctly; skipped regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\06_ws_g3_subjective_w06_mcq_only_correct.png",
+    "file": "06_ws_g3_subjective_w06_mcq_only_correct.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Only MCQ regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\07_ws_g3_subjective_w06_open_only_correct.png",
+    "file": "07_ws_g3_subjective_w06_open_only_correct.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Only handwritten/open regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\08_ws_g3_subjective_w06_multiple_marks.png",
+    "file": "08_ws_g3_subjective_w06_multiple_marks.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "MCQ regions receive multiple selections where possible."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\09_ws_g3_subjective_w06_stray_marks.png",
+    "file": "09_ws_g3_subjective_w06_stray_marks.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Correct worksheet plus stray red marks outside answer regions."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\10_ws_g3_subjective_w06_tedha_rotated.png",
+    "file": "10_ws_g3_subjective_w06_tedha_rotated.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Rotated worksheet to test deskew/perspective normalization."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\11_ws_g3_subjective_w06_perspective_skewed.png",
+    "file": "11_ws_g3_subjective_w06_perspective_skewed.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Perspective-skewed worksheet to test page contour correction."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\12_ws_g3_subjective_w06_zoomed_cropped.png",
+    "file": "12_ws_g3_subjective_w06_zoomed_cropped.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Zoomed/cropped worksheet with page boundary partly missing."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\13_ws_g3_subjective_w06_blurry.png",
+    "file": "13_ws_g3_subjective_w06_blurry.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Blurry worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\14_ws_g3_subjective_w06_small.png",
+    "file": "14_ws_g3_subjective_w06_small.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Small low-resolution worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_subjective_w06\\15_ws_g3_subjective_w06_too_dark.png",
+    "file": "15_ws_g3_subjective_w06_too_dark.png",
+    "template": "ws_g3_subjective_w06",
+    "purpose": "Very dark worksheet expected to fail brightness validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\01_ws_g3_hybrid_w06_blank_original.png",
+    "file": "01_ws_g3_hybrid_w06_blank_original.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Blank original template."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\02_ws_g3_hybrid_w06_fully_filled_correct.png",
+    "file": "02_ws_g3_hybrid_w06_fully_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "All configured regions filled with correct synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\03_ws_g3_hybrid_w06_fully_filled_incorrect.png",
+    "file": "03_ws_g3_hybrid_w06_fully_filled_incorrect.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "All configured regions filled with intentionally wrong synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\04_ws_g3_hybrid_w06_half_filled_correct.png",
+    "file": "04_ws_g3_hybrid_w06_half_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "First half of regions filled correctly; remaining regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\05_ws_g3_hybrid_w06_alternate_filled_correct.png",
+    "file": "05_ws_g3_hybrid_w06_alternate_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Alternating regions filled correctly; skipped regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\06_ws_g3_hybrid_w06_mcq_only_correct.png",
+    "file": "06_ws_g3_hybrid_w06_mcq_only_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Only MCQ regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\07_ws_g3_hybrid_w06_open_only_correct.png",
+    "file": "07_ws_g3_hybrid_w06_open_only_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Only handwritten/open regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\08_ws_g3_hybrid_w06_multiple_marks.png",
+    "file": "08_ws_g3_hybrid_w06_multiple_marks.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "MCQ regions receive multiple selections where possible."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\09_ws_g3_hybrid_w06_stray_marks.png",
+    "file": "09_ws_g3_hybrid_w06_stray_marks.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Correct worksheet plus stray red marks outside answer regions."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\10_ws_g3_hybrid_w06_tedha_rotated.png",
+    "file": "10_ws_g3_hybrid_w06_tedha_rotated.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Rotated worksheet to test deskew/perspective normalization."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\11_ws_g3_hybrid_w06_perspective_skewed.png",
+    "file": "11_ws_g3_hybrid_w06_perspective_skewed.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Perspective-skewed worksheet to test page contour correction."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\12_ws_g3_hybrid_w06_zoomed_cropped.png",
+    "file": "12_ws_g3_hybrid_w06_zoomed_cropped.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Zoomed/cropped worksheet with page boundary partly missing."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\13_ws_g3_hybrid_w06_blurry.png",
+    "file": "13_ws_g3_hybrid_w06_blurry.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Blurry worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\14_ws_g3_hybrid_w06_small.png",
+    "file": "14_ws_g3_hybrid_w06_small.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Small low-resolution worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g3_hybrid_w06\\15_ws_g3_hybrid_w06_too_dark.png",
+    "file": "15_ws_g3_hybrid_w06_too_dark.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Very dark worksheet expected to fail brightness validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\01_ws_g2_subjective_w06_blank_original.png",
+    "file": "01_ws_g2_subjective_w06_blank_original.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Blank original template."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\02_ws_g2_subjective_w06_fully_filled_correct.png",
+    "file": "02_ws_g2_subjective_w06_fully_filled_correct.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "All configured regions filled with correct synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\03_ws_g2_subjective_w06_fully_filled_incorrect.png",
+    "file": "03_ws_g2_subjective_w06_fully_filled_incorrect.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "All configured regions filled with intentionally wrong synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\04_ws_g2_subjective_w06_half_filled_correct.png",
+    "file": "04_ws_g2_subjective_w06_half_filled_correct.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "First half of regions filled correctly; remaining regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\05_ws_g2_subjective_w06_alternate_filled_correct.png",
+    "file": "05_ws_g2_subjective_w06_alternate_filled_correct.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Alternating regions filled correctly; skipped regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\06_ws_g2_subjective_w06_mcq_only_correct.png",
+    "file": "06_ws_g2_subjective_w06_mcq_only_correct.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Only MCQ regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\07_ws_g2_subjective_w06_open_only_correct.png",
+    "file": "07_ws_g2_subjective_w06_open_only_correct.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Only handwritten/open regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\08_ws_g2_subjective_w06_multiple_marks.png",
+    "file": "08_ws_g2_subjective_w06_multiple_marks.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "MCQ regions receive multiple selections where possible."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\09_ws_g2_subjective_w06_stray_marks.png",
+    "file": "09_ws_g2_subjective_w06_stray_marks.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Correct worksheet plus stray red marks outside answer regions."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\10_ws_g2_subjective_w06_tedha_rotated.png",
+    "file": "10_ws_g2_subjective_w06_tedha_rotated.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Rotated worksheet to test deskew/perspective normalization."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\11_ws_g2_subjective_w06_perspective_skewed.png",
+    "file": "11_ws_g2_subjective_w06_perspective_skewed.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Perspective-skewed worksheet to test page contour correction."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\12_ws_g2_subjective_w06_zoomed_cropped.png",
+    "file": "12_ws_g2_subjective_w06_zoomed_cropped.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Zoomed/cropped worksheet with page boundary partly missing."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\13_ws_g2_subjective_w06_blurry.png",
+    "file": "13_ws_g2_subjective_w06_blurry.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Blurry worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\14_ws_g2_subjective_w06_small.png",
+    "file": "14_ws_g2_subjective_w06_small.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Small low-resolution worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\15_ws_g2_subjective_w06_too_dark.png",
+    "file": "15_ws_g2_subjective_w06_too_dark.png",
+    "template": "ws_g2_subjective_w06",
+    "purpose": "Very dark worksheet expected to fail brightness validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\01_ws_g2_hybrid_w06_blank_original.png",
+    "file": "01_ws_g2_hybrid_w06_blank_original.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Blank original template."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\02_ws_g2_hybrid_w06_fully_filled_correct.png",
+    "file": "02_ws_g2_hybrid_w06_fully_filled_correct.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "All configured regions filled with correct synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\03_ws_g2_hybrid_w06_fully_filled_incorrect.png",
+    "file": "03_ws_g2_hybrid_w06_fully_filled_incorrect.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "All configured regions filled with intentionally wrong synthetic answers."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\04_ws_g2_hybrid_w06_half_filled_correct.png",
+    "file": "04_ws_g2_hybrid_w06_half_filled_correct.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "First half of regions filled correctly; remaining regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\05_ws_g2_hybrid_w06_alternate_filled_correct.png",
+    "file": "05_ws_g2_hybrid_w06_alternate_filled_correct.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Alternating regions filled correctly; skipped regions blank."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\06_ws_g2_hybrid_w06_mcq_only_correct.png",
+    "file": "06_ws_g2_hybrid_w06_mcq_only_correct.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Only MCQ regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\07_ws_g2_hybrid_w06_open_only_correct.png",
+    "file": "07_ws_g2_hybrid_w06_open_only_correct.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Only handwritten/open regions filled correctly."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\08_ws_g2_hybrid_w06_multiple_marks.png",
+    "file": "08_ws_g2_hybrid_w06_multiple_marks.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "MCQ regions receive multiple selections where possible."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\09_ws_g2_hybrid_w06_stray_marks.png",
+    "file": "09_ws_g2_hybrid_w06_stray_marks.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Correct worksheet plus stray red marks outside answer regions."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\10_ws_g2_hybrid_w06_tedha_rotated.png",
+    "file": "10_ws_g2_hybrid_w06_tedha_rotated.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Rotated worksheet to test deskew/perspective normalization."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\11_ws_g2_hybrid_w06_perspective_skewed.png",
+    "file": "11_ws_g2_hybrid_w06_perspective_skewed.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Perspective-skewed worksheet to test page contour correction."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\12_ws_g2_hybrid_w06_zoomed_cropped.png",
+    "file": "12_ws_g2_hybrid_w06_zoomed_cropped.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Zoomed/cropped worksheet with page boundary partly missing."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\13_ws_g2_hybrid_w06_blurry.png",
+    "file": "13_ws_g2_hybrid_w06_blurry.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Blurry worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\14_ws_g2_hybrid_w06_small.png",
+    "file": "14_ws_g2_hybrid_w06_small.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Small low-resolution worksheet expected to fail validation."
+  },
+  {
+    "path": "template_variation_tests\\ws_g2_hybrid_w06\\15_ws_g2_hybrid_w06_too_dark.png",
+    "file": "15_ws_g2_hybrid_w06_too_dark.png",
+    "template": "ws_g2_hybrid_w06",
+    "purpose": "Very dark worksheet expected to fail brightness validation."
+  }
+]

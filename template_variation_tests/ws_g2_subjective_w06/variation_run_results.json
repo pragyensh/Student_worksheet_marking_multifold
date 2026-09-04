@@ -1,0 +1,1363 @@
+[
+  {
+    "file": "01_ws_g2_subjective_w06_blank_original.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\01_ws_g2_subjective_w06_blank_original.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": false,
+      "review_regions": [],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      }
+    ]
+  },
+  {
+    "file": "02_ws_g2_subjective_w06_fully_filled_correct.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\02_ws_g2_subjective_w06_fully_filled_correct.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "03_ws_g2_subjective_w06_fully_filled_incorrect.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\03_ws_g2_subjective_w06_fully_filled_incorrect.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "04_ws_g2_subjective_w06_half_filled_correct.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\04_ws_g2_subjective_w06_half_filled_correct.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      }
+    ]
+  },
+  {
+    "file": "05_ws_g2_subjective_w06_alternate_filled_correct.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\05_ws_g2_subjective_w06_alternate_filled_correct.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r2",
+        "q1c-bf1-ones",
+        "q1c-bf2-ones",
+        "q2-pair2-r1",
+        "q2-pair4-r1",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "06_ws_g2_subjective_w06_mcq_only_correct.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\06_ws_g2_subjective_w06_mcq_only_correct.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": false,
+      "review_regions": [],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      }
+    ]
+  },
+  {
+    "file": "07_ws_g2_subjective_w06_open_only_correct.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\07_ws_g2_subjective_w06_open_only_correct.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "08_ws_g2_subjective_w06_multiple_marks.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\08_ws_g2_subjective_w06_multiple_marks.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": false,
+      "review_regions": [],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "BLANK",
+        "score": "blank"
+      }
+    ]
+  },
+  {
+    "file": "09_ws_g2_subjective_w06_stray_marks.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\09_ws_g2_subjective_w06_stray_marks.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment",
+      "details": {
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "10_ws_g2_subjective_w06_tedha_rotated.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\10_ws_g2_subjective_w06_tedha_rotated.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "page contour perspective correction + ORB refinement",
+      "details": {
+        "page_quad": [
+          [
+            39.0,
+            0.0
+          ],
+          [
+            641.0,
+            25.0
+          ],
+          [
+            602.0,
+            829.0
+          ],
+          [
+            0.0,
+            804.0
+          ]
+        ],
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "11_ws_g2_subjective_w06_perspective_skewed.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\11_ws_g2_subjective_w06_perspective_skewed.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "warning",
+    "stop_or_warning_step": "2. Template resolution",
+    "errors": [
+      "Low template-resolution confidence. Review before trusting extraction."
+    ],
+    "normalization": {
+      "normalization": "page contour perspective correction + ORB refinement",
+      "details": {
+        "page_quad": [
+          [
+            138.0,
+            43.0
+          ],
+          [
+            726.0,
+            158.0
+          ],
+          [
+            669.0,
+            1053.0
+          ],
+          [
+            70.0,
+            897.0
+          ]
+        ],
+        "target_width": 642,
+        "target_height": 830
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "12_ws_g2_subjective_w06_zoomed_cropped.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\12_ws_g2_subjective_w06_zoomed_cropped.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "completed",
+    "stop_or_warning_step": null,
+    "errors": [],
+    "normalization": {
+      "normalization": "ORB feature homography alignment from full-frame/cropped input",
+      "details": {
+        "page_quad": [
+          [
+            14.0,
+            0.0
+          ],
+          [
+            627.0,
+            0.0
+          ],
+          [
+            641.0,
+            829.0
+          ],
+          [
+            0.0,
+            829.0
+          ]
+        ],
+        "target_width": 642,
+        "target_height": 830,
+        "warning": "Page boundary is not clearly visible; alignment used internal worksheet features."
+      },
+      "template_canvas": {
+        "width": 642,
+        "height": 830
+      }
+    },
+    "summary": {
+      "template_id": "ws_g2_subjective_w06",
+      "template_name": "Grade 2 Subjective W06",
+      "correct": 0,
+      "total": 13,
+      "score_label": "0/13",
+      "manual_review_needed": true,
+      "review_regions": [
+        "q1a-r1",
+        "q1b-r1",
+        "q1b-r2",
+        "q1c-bf1-tens",
+        "q1c-bf1-ones",
+        "q1c-bf2-tens",
+        "q1c-bf2-ones",
+        "q2-pair1-r1",
+        "q2-pair2-r1",
+        "q2-pair3-r1",
+        "q2-pair4-r1",
+        "q3-row1-mark",
+        "q3-row2-mark"
+      ],
+      "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review."
+    },
+    "responses": [
+      {
+        "region_id": "q1a-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1b-r2",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf1-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-tens",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q1c-bf2-ones",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair1-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair2-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair3-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q2-pair4-r1",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row1-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      },
+      {
+        "region_id": "q3-row2-mark",
+        "student_response": "AMBIGUOUS",
+        "score": "ambiguous"
+      }
+    ]
+  },
+  {
+    "file": "13_ws_g2_subjective_w06_blurry.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\13_ws_g2_subjective_w06_blurry.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "failed",
+    "stop_or_warning_step": "3. Image validation and normalisation gate",
+    "errors": [
+      "Image looks blurry. Upload a clearer worksheet photo."
+    ],
+    "normalization": {},
+    "summary": {},
+    "responses": []
+  },
+  {
+    "file": "14_ws_g2_subjective_w06_small.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\14_ws_g2_subjective_w06_small.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "failed",
+    "stop_or_warning_step": "3. Image validation and normalisation gate",
+    "errors": [
+      "Image resolution is too small for reliable region crops."
+    ],
+    "normalization": {},
+    "summary": {},
+    "responses": []
+  },
+  {
+    "file": "15_ws_g2_subjective_w06_too_dark.png",
+    "path": "template_variation_tests\\ws_g2_subjective_w06\\15_ws_g2_subjective_w06_too_dark.png",
+    "selected_template": "ws_g2_subjective_w06",
+    "final_status": "failed",
+    "stop_or_warning_step": "3. Image validation and normalisation gate",
+    "errors": [
+      "Image brightness is outside the safe range."
+    ],
+    "normalization": {},
+    "summary": {},
+    "responses": []
+  }
+]

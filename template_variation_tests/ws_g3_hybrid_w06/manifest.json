@@ -1,0 +1,77 @@
+[
+  {
+    "file": "01_ws_g3_hybrid_w06_blank_original.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Blank original template."
+  },
+  {
+    "file": "02_ws_g3_hybrid_w06_fully_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "All configured regions filled with correct synthetic answers."
+  },
+  {
+    "file": "03_ws_g3_hybrid_w06_fully_filled_incorrect.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "All configured regions filled with intentionally wrong synthetic answers."
+  },
+  {
+    "file": "04_ws_g3_hybrid_w06_half_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "First half of regions filled correctly; remaining regions blank."
+  },
+  {
+    "file": "05_ws_g3_hybrid_w06_alternate_filled_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Alternating regions filled correctly; skipped regions blank."
+  },
+  {
+    "file": "06_ws_g3_hybrid_w06_mcq_only_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Only MCQ regions filled correctly."
+  },
+  {
+    "file": "07_ws_g3_hybrid_w06_open_only_correct.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Only handwritten/open regions filled correctly."
+  },
+  {
+    "file": "08_ws_g3_hybrid_w06_multiple_marks.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "MCQ regions receive multiple selections where possible."
+  },
+  {
+    "file": "09_ws_g3_hybrid_w06_stray_marks.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Correct worksheet plus stray red marks outside answer regions."
+  },
+  {
+    "file": "10_ws_g3_hybrid_w06_tedha_rotated.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Rotated worksheet to test deskew/perspective normalization."
+  },
+  {
+    "file": "11_ws_g3_hybrid_w06_perspective_skewed.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Perspective-skewed worksheet to test page contour correction."
+  },
+  {
+    "file": "12_ws_g3_hybrid_w06_zoomed_cropped.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Zoomed/cropped worksheet with page boundary partly missing."
+  },
+  {
+    "file": "13_ws_g3_hybrid_w06_blurry.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Blurry worksheet expected to fail validation."
+  },
+  {
+    "file": "14_ws_g3_hybrid_w06_small.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Small low-resolution worksheet expected to fail validation."
+  },
+  {
+    "file": "15_ws_g3_hybrid_w06_too_dark.png",
+    "template": "ws_g3_hybrid_w06",
+    "purpose": "Very dark worksheet expected to fail brightness validation."
+  }
+]

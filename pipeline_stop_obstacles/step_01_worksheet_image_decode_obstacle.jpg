@@ -1,0 +1,1 @@
+This is not JPEG or PNG image data. OpenCV imdecode should return None.

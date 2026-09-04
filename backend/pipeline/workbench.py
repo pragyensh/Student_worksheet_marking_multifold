@@ -1,10 +1,12 @@
 import base64
+import json
 import os
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
 import cv2
 import numpy as np
+import requests
 
 
 TEMPLATE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates"))
@@ -114,7 +116,7 @@ STEP_DEFS = [
     ("worksheet_image", "Worksheet image", "backend.api.app", "OpenCV imdecode", "Accept and decode the uploaded worksheet image."),
     ("template_resolution", "Template resolution", "TemplateResolver", "ORB + edge/image similarity", "Identify which of the 4 configured worksheets this upload belongs to."),
     ("image_validation", "Image validation and normalisation gate", "ImageValidator", "Laplacian blur + brightness + size checks", "Reject unreadable, tiny, very dark/bright or badly blurred images."),
-    ("normalization", "Page normalisation", "PageNormalizer", "Contour page detection + resize-to-template", "Create a stable image for the selected template size."),
+    ("normalization", "Page normalisation", "PageNormalizer", "Page contour detection + ORB homography + resize fallback", "Create a stable image for the selected template size."),
     ("response_region_preparation", "Response-region preparation", "RegionCropper", "Manual JSON-style boxes", "Locate and crop every configured answer region."),
     ("response_extraction", "Response extraction", "LocalExtractor", "Red/diff ink mask + checkbox option scoring", "Read only visible student-created marks in each region."),
     ("response_standardization_locking", "Response standardization and locking", "ResponseLocker", "Allowed-value normalization", "Lock outputs as A/B/C/D, BLANK, MULTIPLE, AMBIGUOUS or review-needed values."),
@@ -249,10 +251,12 @@ def _run_step(index: int, state: Dict[str, Any]) -> Dict[str, Any]:
         }
 
     if index == 3:
-        normalized = _normalize_to_template(state["image"], state["template_image"])
+        normalization = _normalize_to_template(state["image"], state["template_image"])
+        normalized = normalization["image"]
         state["normalized_image"] = normalized
         return {
-            "normalization": "resized to selected template canvas",
+            "normalization": normalization["method"],
+            "details": normalization["details"],
             "template_canvas": {
                 "width": state["template_image"].shape[1],
                 "height": state["template_image"].shape[0],
@@ -457,8 +461,182 @@ def _validate_image(image: np.ndarray) -> Dict[str, Any]:
     }
 
 
-def _normalize_to_template(image: np.ndarray, template_image: np.ndarray) -> np.ndarray:
-    return cv2.resize(image, (template_image.shape[1], template_image.shape[0]), interpolation=cv2.INTER_AREA)
+def _normalize_to_template(image: np.ndarray, template_image: np.ndarray) -> Dict[str, Any]:
+    template_height, template_width = template_image.shape[:2]
+    target_size = (template_width, template_height)
+
+    page_quad = _detect_page_quad(image)
+    if page_quad is not None:
+        ordered_quad = _order_points(page_quad)
+        if _quad_is_full_frame(ordered_quad, image.shape[1], image.shape[0]):
+            aligned = _align_to_template_with_features(image, template_image)
+            if aligned is not None:
+                return {
+                    "image": aligned,
+                    "method": "ORB feature homography alignment from full-frame/cropped input",
+                    "details": {
+                        "page_quad": [[round(float(x), 1), round(float(y), 1)] for x, y in ordered_quad],
+                        "target_width": template_width,
+                        "target_height": template_height,
+                        "warning": "Page boundary is not clearly visible; alignment used internal worksheet features.",
+                    },
+                }
+
+        destination = np.array([
+            [0, 0],
+            [template_width - 1, 0],
+            [template_width - 1, template_height - 1],
+            [0, template_height - 1],
+        ], dtype="float32")
+        matrix = cv2.getPerspectiveTransform(ordered_quad, destination)
+        warped = cv2.warpPerspective(image, matrix, target_size)
+        refined = _align_to_template_with_features(warped, template_image)
+        output_image = refined if refined is not None else warped
+        return {
+            "image": output_image,
+            "method": "page contour perspective correction + ORB refinement" if refined is not None else "page contour perspective correction",
+            "details": {
+                "page_quad": [[round(float(x), 1), round(float(y), 1)] for x, y in ordered_quad],
+                "target_width": template_width,
+                "target_height": template_height,
+            },
+        }
+
+    aligned = _align_to_template_with_features(image, template_image)
+    if aligned is not None:
+        return {
+            "image": aligned,
+            "method": "ORB feature homography alignment",
+            "details": {
+                "target_width": template_width,
+                "target_height": template_height,
+            },
+        }
+
+    resized = cv2.resize(image, target_size, interpolation=cv2.INTER_AREA)
+    return {
+        "image": resized,
+        "method": "resize fallback to selected template canvas",
+        "details": {
+            "target_width": template_width,
+            "target_height": template_height,
+            "reason": "No reliable page contour or feature homography was found.",
+        },
+    }
+
+
+def _detect_page_quad(image: np.ndarray) -> Optional[np.ndarray]:
+    background_quad = _detect_page_quad_from_background(image)
+    if background_quad is not None:
+        return background_quad
+
+    height, width = image.shape[:2]
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    edges = cv2.Canny(blurred, 50, 150)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    edges = cv2.dilate(edges, kernel, iterations=1)
+    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    image_area = float(width * height)
+    for contour in sorted(contours, key=cv2.contourArea, reverse=True)[:10]:
+        area = cv2.contourArea(contour)
+        if area < image_area * 0.18 or area > image_area * 0.98:
+            continue
+        perimeter = cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, 0.02 * perimeter, True)
+        if len(approx) == 4 and cv2.isContourConvex(approx):
+            return approx.reshape(4, 2).astype("float32")
+
+    return None
+
+
+def _detect_page_quad_from_background(image: np.ndarray) -> Optional[np.ndarray]:
+    height, width = image.shape[:2]
+    border = max(8, min(height, width) // 40)
+    corner_samples = np.concatenate([
+        image[:border, :border].reshape(-1, 3),
+        image[:border, -border:].reshape(-1, 3),
+        image[-border:, :border].reshape(-1, 3),
+        image[-border:, -border:].reshape(-1, 3),
+    ], axis=0)
+    background = np.median(corner_samples, axis=0)
+    distance = np.linalg.norm(image.astype(np.float32) - background.astype(np.float32), axis=2)
+    mask = (distance > 18).astype(np.uint8) * 255
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (25, 25))
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
+    mask = cv2.dilate(mask, kernel, iterations=1)
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if not contours:
+        return None
+
+    image_area = float(width * height)
+    for contour in sorted(contours, key=cv2.contourArea, reverse=True)[:5]:
+        area = cv2.contourArea(contour)
+        if area < image_area * 0.18 or area > image_area * 0.98:
+            continue
+        perimeter = cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, 0.03 * perimeter, True)
+        if len(approx) == 4 and cv2.isContourConvex(approx):
+            return approx.reshape(4, 2).astype("float32")
+
+        rect = cv2.minAreaRect(contour)
+        box = cv2.boxPoints(rect)
+        rect_area = float(rect[1][0] * rect[1][1])
+        if rect_area > image_area * 0.18:
+            return box.astype("float32")
+
+    return None
+
+
+def _align_to_template_with_features(image: np.ndarray, template_image: np.ndarray) -> Optional[np.ndarray]:
+    template_height, template_width = template_image.shape[:2]
+    orb = cv2.ORB_create(nfeatures=1500)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray_template = cv2.cvtColor(template_image, cv2.COLOR_BGR2GRAY)
+    kp_template, desc_template = orb.detectAndCompute(gray_template, None)
+    kp_image, desc_image = orb.detectAndCompute(gray_image, None)
+    if desc_template is None or desc_image is None or len(kp_template) < 12 or len(kp_image) < 12:
+        return None
+
+    matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+    matches = sorted(matcher.match(desc_template, desc_image), key=lambda item: item.distance)
+    good = [match for match in matches if match.distance <= 72][:240]
+    if len(good) < 12:
+        return None
+
+    points_template = np.float32([kp_template[match.queryIdx].pt for match in good]).reshape(-1, 1, 2)
+    points_image = np.float32([kp_image[match.trainIdx].pt for match in good]).reshape(-1, 1, 2)
+    matrix, inlier_mask = cv2.findHomography(points_image, points_template, cv2.RANSAC, 5.0)
+    inliers = int(inlier_mask.sum()) if inlier_mask is not None else 0
+    if matrix is None or inliers < 20:
+        return None
+
+    return cv2.warpPerspective(image, matrix, (template_width, template_height))
+
+
+def _quad_is_full_frame(points: np.ndarray, width: int, height: int) -> bool:
+    expected = np.array([
+        [0, 0],
+        [width - 1, 0],
+        [width - 1, height - 1],
+        [0, height - 1],
+    ], dtype="float32")
+    tolerance = max(width, height) * 0.02
+    return bool(np.all(np.linalg.norm(points - expected, axis=1) <= tolerance))
+
+
+def _order_points(points: np.ndarray) -> np.ndarray:
+    rect = np.zeros((4, 2), dtype="float32")
+    point_sum = points.sum(axis=1)
+    rect[0] = points[np.argmin(point_sum)]
+    rect[2] = points[np.argmax(point_sum)]
+
+    point_diff = np.diff(points, axis=1)
+    rect[1] = points[np.argmin(point_diff)]
+    rect[3] = points[np.argmax(point_diff)]
+    return rect
 
 
 def _prepare_regions(template: Dict[str, Any], normalized_image: np.ndarray) -> List[Dict[str, Any]]:
@@ -527,7 +705,124 @@ def _extract_open_region(crop: np.ndarray, template_crop: np.ndarray, region_typ
     if not red_ink_present and not dark_ink_fallback:
         confidence = "medium" if region_type == "drawing" else "high"
         return "BLANK", confidence, {**metrics, "selection_mode": "red_ink_or_strong_diff"}
-    return "MARK_PRESENT", "medium", {**metrics, "note": "Visible ink exists, but no handwriting/drawing model is wired in this POC."}
+
+    recognized = _recognize_open_response(crop, region_type)
+    if recognized:
+        return recognized["student_response"], recognized["confidence"], {
+            **metrics,
+            "selection_mode": "red_ink_or_strong_diff",
+            "recognizer": recognized["recognizer"],
+            "recognizer_note": recognized["note"],
+        }
+
+    return "MARK_PRESENT", "medium", {
+        **metrics,
+        "selection_mode": "red_ink_or_strong_diff",
+        "note": "Visible ink exists, but no handwriting/drawing recognizer is configured.",
+    }
+
+
+def _recognize_open_response(crop: np.ndarray, region_type: str) -> Optional[Dict[str, str]]:
+    provider = os.getenv("HANDWRITING_RECOGNIZER", "").strip().lower()
+    if provider in ("", "none", "off", "disabled"):
+        return None
+    if provider == "gemini":
+        return _recognize_with_gemini(crop, region_type)
+    return None
+
+
+def _recognize_with_gemini(crop: np.ndarray, region_type: str) -> Optional[Dict[str, str]]:
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
+    if not api_key:
+        return None
+
+    model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip()
+    prompt = _recognizer_prompt(region_type)
+    ok, encoded = cv2.imencode(".jpg", crop, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
+    if not ok:
+        return None
+
+    body = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt},
+                    {
+                        "inline_data": {
+                            "mime_type": "image/jpeg",
+                            "data": base64.b64encode(encoded.tobytes()).decode("ascii"),
+                        }
+                    },
+                ]
+            }
+        ],
+        "generationConfig": {
+            "temperature": 0,
+            "response_mime_type": "application/json",
+        },
+    }
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    try:
+        response = requests.post(url, params={"key": api_key}, json=body, timeout=45)
+        response.raise_for_status()
+        payload = response.json()
+        text = payload["candidates"][0]["content"]["parts"][0]["text"]
+        parsed = json.loads(text)
+    except Exception:
+        return None
+
+    student_response = str(parsed.get("student_response", "AMBIGUOUS")).strip()
+    confidence = str(parsed.get("confidence", "medium")).strip().lower()
+    if confidence not in ("high", "medium", "low"):
+        confidence = "medium"
+
+    student_response = _sanitize_recognized_response(student_response, region_type)
+    return {
+        "student_response": student_response,
+        "confidence": confidence,
+        "recognizer": f"gemini:{model}",
+        "note": str(parsed.get("note", "External recognizer used only after local ink detection."))[:240],
+    }
+
+
+def _recognizer_prompt(region_type: str) -> str:
+    shared = (
+        "Read only the student's visible handwriting or drawing in this cropped worksheet answer region. "
+        "Do not solve the math question. Do not use an answer key. If the visual evidence is unclear, return AMBIGUOUS. "
+        "Return only JSON with keys student_response, confidence, and note. Confidence must be high, medium, or low. "
+    )
+    if region_type == "numeral":
+        return shared + "The answer type is a handwritten numeral. Return the digits exactly as visible, or BLANK/AMBIGUOUS."
+    if region_type == "symbol":
+        return shared + "The answer type is a comparison symbol. Return exactly one of >, <, =, BLANK, or AMBIGUOUS."
+    if region_type == "mark":
+        return shared + "The answer type is a mark. Return exactly tick, cross, BLANK, or AMBIGUOUS."
+    if region_type == "drawing":
+        return shared + "The answer type is a base-ten drawing. If clear, return TENS=<number>; ONES=<number>. Otherwise return AMBIGUOUS."
+    if region_type == "matching":
+        return shared + "The answer type is a matching/selection response. Describe the selected visual target briefly, or return AMBIGUOUS."
+    return shared + "Return the transcribed text exactly as visible, or BLANK/AMBIGUOUS."
+
+
+def _sanitize_recognized_response(value: str, region_type: str) -> str:
+    if not value:
+        return "AMBIGUOUS"
+    upper = value.upper()
+    if upper in ("BLANK", "AMBIGUOUS", "STRAY_MARK", "MULTIPLE"):
+        return upper
+    if region_type == "symbol":
+        return value if value in (">", "<", "=") else "AMBIGUOUS"
+    if region_type == "mark":
+        lowered = value.lower()
+        if lowered in ("tick", "cross"):
+            return lowered
+        return "AMBIGUOUS"
+    if region_type == "numeral":
+        digits = "".join(ch for ch in value if ch.isdigit())
+        return digits or "AMBIGUOUS"
+    if region_type == "drawing":
+        return value.upper().replace(" ", "")
+    return value.strip()
 
 
 def _lock_responses(observations: List[Dict[str, Any]]) -> List[Dict[str, str]]:
@@ -582,9 +877,10 @@ def _score(template: Dict[str, Any], locked: List[Dict[str, str]]) -> List[Dict[
         elif response == "MULTIPLE":
             score = "multiple"
         else:
-            expected = str(answer.get("correct_value", "")).strip().lower()
-            variants = [str(value).strip().lower() for value in answer.get("acceptable_variants", [])]
-            score = "correct" if response.strip().lower() == expected or response.strip().lower() in variants else "incorrect"
+            response_key = _answer_key(response)
+            expected = _answer_key(answer.get("correct_value", ""))
+            variants = [_answer_key(value) for value in answer.get("acceptable_variants", [])]
+            score = "correct" if response_key == expected or response_key in variants else "incorrect"
         results.append({
             "region_id": item["region_id"],
             "student_response": response,
@@ -623,8 +919,12 @@ def _aggregate(results: List[Dict[str, str]], template: Dict[str, Any], exceptio
         "score_label": f"{correct}/{total}",
         "manual_review_needed": exceptions.get("manual_review_needed", False),
         "review_regions": exceptions.get("review_regions", []),
-        "notes": "POC result: MCQs and blank states are local-CV based; handwritten/drawing values are flagged unless a recognizer is added.",
+        "notes": "MCQs and blank states are local-CV based; marked open answers use the configured recognizer, otherwise they are flagged for review.",
     }
+
+
+def _answer_key(value: Any) -> str:
+    return "".join(str(value).strip().lower().split())
 
 
 def _mark_metrics(crop: np.ndarray, template_crop: np.ndarray) -> Dict[str, Any]:
